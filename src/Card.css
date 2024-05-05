@@ -1,0 +1,90 @@
+
+h6, p {
+    margin: 0;
+}
+
+.card {
+    max-width: 20rem;
+    height: 34rem;
+    border-radius: 1.3rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 24px 24px 8px 24px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.card:hover {
+    transform: scale(1.01);
+    transition: all ease-in 0.05s;
+}
+
+.posted-header {
+    box-shadow: rgba(149, 157, 165, 0.6) 1px 1px 6px;
+    border-radius: 10px;
+    padding: 2px 5px 2px 5px;
+    font-size: 9px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding-top: 16px;
+}
+
+.card
+
+.logo img {
+    height: 40px;
+    width: 40px;
+}
+
+
+.header-subsection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 10px;
+}
+.experience-section {
+
+    margin: 8px 0px;
+   
+}
+
+.salary-section {
+    margin: 5px 0px;
+}
+
+.button-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+}
+
+.button-section button {
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 0px;
+}
+
+.card-body h6 {
+    margin-top: 6px;
+}
+
+.button-section button:first-of-type {
+    background-color: var(--primary-button);
+    font-weight: 500;
+}
+
+.button-section button:last-of-type {
+    background-color: var( --secondary-button);
+    color: white;
+}

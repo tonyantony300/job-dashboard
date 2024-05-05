@@ -1,4 +1,5 @@
 import "./App.css";
+import Card from "./Card";
 
 function App() {
   return (
@@ -10,6 +11,9 @@ function App() {
         <span className="filter">Remote</span>
         <span className="filter">Minimum Base Pay Salary</span>
         <span className="filter">Search Company Name</span>
+      </div>
+      <div className="cards-section">
+        <Card />
       </div>
     </div>
   );

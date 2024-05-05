@@ -13,22 +13,32 @@
 }
 
 
-
-
 .App {
   margin: 0;
   box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: 100%;
   position: relative;
   overflow-x: hidden;
-
 }
 
 .container {
-  background-color: aliceblue;
+  background-color: #fff;
+  padding: 2rem;
   height: 100vh;
+}
+
+.filter-section {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.filter {
+  border: 1px solid var(--filter-border);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: small;
+  color: var(--text-lightgray)
 }

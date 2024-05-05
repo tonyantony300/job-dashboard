@@ -1,0 +1,34 @@
+:root {
+  --text-dark : #000;
+  --text-light: #fff;
+  --text-lightgray: #8b8b8b;
+  --text-darkgray: #4c5969;
+
+  --body-font: "Roboto", sans-serif;
+  --primary-button: #54efc3;
+  --secondary-button: #4943da;
+  --bg-white: #fff;
+  --filter-border: #ccc;
+
+}
+
+
+
+
+.App {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  overflow-x: hidden;
+
+}
+
+.container {
+  background-color: aliceblue;
+  height: 100vh;
+}

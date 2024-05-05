@@ -35,7 +35,6 @@ h6, p {
     padding-top: 16px;
 }
 
-.card
 
 .logo img {
     height: 40px;
@@ -78,6 +77,22 @@ h6, p {
 .card-body h6 {
     margin-top: 6px;
 }
+.card-body {
+    position: relative;
+    max-height: 250px; 
+    overflow: hidden;
+  }
+  
+  .card-body::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 150px; 
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    z-index: 0;
+  }
 
 .button-section button:first-of-type {
     background-color: var(--primary-button);
@@ -88,3 +103,12 @@ h6, p {
     background-color: var( --secondary-button);
     color: white;
 }
+
+button.show-more {
+    z-index: 99;
+}
+
+.no-overlay::after {
+    background: none; 
+ }
+ 

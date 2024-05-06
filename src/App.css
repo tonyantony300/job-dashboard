@@ -31,6 +31,7 @@
 .filter-section {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.5rem;
@@ -41,7 +42,8 @@
   padding: 10px 20px;
   border-radius: 5px;
   font-size: small;
-  color: var(--text-lightgray)
+  color: var(--text-lightgray);
+  white-space: nowrap;
 }
 
 .cards-section {

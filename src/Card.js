@@ -39,7 +39,7 @@ export default function Card() {
       </div>
       <div className={`card-body ${isExpanded ? "no-overlay" : ""}`}>
         <span>About Company:</span> <br></br>
-        <h6>About us</h6>
+        <h5>About us</h5>
         {/* <p style={{ overflowY: "scroll", maxHeight: "100px" }}> */}
         <p>{isExpanded ? details : shortDetails}</p>
         <div

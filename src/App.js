@@ -54,16 +54,14 @@ function App() {
         {items.map((item, index) => (
           <Card
             key={item.jdUid}
-            company={item.companyName}
-            logoUrl={item.logoUrl}
-            role={item.jobRole}
-            location={item.location}
-            minSalary={item.minJdSalary}
-            maxSalary={item.maxJdSalary}
-            salaryCurrencyCode={item.salaryCurrencyCode}
-            details={item.jobDetailsFromCompany}
-            exp={item.minExp}
-            jdLink={item.jdLink}
+            company={item.companyName || "NA"}
+            logoUrl={item.logoUrl || "https://placeholder.com/logo"}
+            role={item.jobRole || "NA"}
+            location={item.location || "NA"}
+            minSalary={item.minJdSalary || "NA"}
+            maxSalary={item.maxJdSalary || "NA"}
+            details={item.jobDetailsFromCompany || "No details available"}
+            exp={item.minExp || "NA"}
           />
         ))}
       </InfiniteScroll>

@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import "./Card.css";
 
 export default function Card({
-  age = "⏳ Posted 2 days ago",
-  company = "Unknown Company",
-  logoUrl = "https://placeholder.com/logo",
-  role = "Not specified",
-  location = "Location unknown",
-  minSalary = "Not specified",
-  maxSalary = "Not specified",
-  details = "No details available",
-  exp = "Experience not specified",
+  company,
+  logoUrl,
+  role,
+  location,
+  minSalary,
+  maxSalary,
+  details,
+  exp,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -23,7 +22,7 @@ export default function Card({
 
   return (
     <div className="card">
-      <span className="posted-header">{age}</span>
+      <span className="posted-header">⏳ Posted 2 days ago</span>
       <div className="card-header">
         <span className="logo">
           <img src={logoUrl} alt={`${company} logo`} />

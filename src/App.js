@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import "./App.css";
 import Card from "./Card";
+import Filter from "./Filter";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -21,7 +22,6 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Data received =>", data);
         if (data.jdList && data.jdList.length > 0) {
           setItems((prevItems) => [...prevItems, ...data.jdList]);
         }
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="container">
       <div className="filter-section">
-        <span className="filter">Roles</span>
+        <Filter />
         <span className="filter">Number of Employees</span>
         <span className="filter">Experience</span>
         <span className="filter">Remote</span>

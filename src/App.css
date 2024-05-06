@@ -3,13 +3,11 @@
   --text-light: #fff;
   --text-lightgray: #8b8b8b;
   --text-darkgray: #4c5969;
-
   --body-font: "Roboto", sans-serif;
   --primary-button: #54efc3;
   --secondary-button: #4943da;
   --bg-white: #fff;
   --filter-border: #ccc;
-
 }
 
 
@@ -47,14 +45,11 @@
 }
 
 .cards-section {
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-bottom: 1rem;
   display: flex;
   justify-content: start;
   align-items: center;
-
   flex-wrap: wrap;
+  padding: 1rem 0 1rem 1rem;
   gap: 1rem;
   overflow-y: scroll;
 }

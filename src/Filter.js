@@ -1,12 +1,9 @@
 import React from "react";
 import Select from "react-select";
+import getOptions from "./helper";
 
-export default function Filter() {
-  const options = [
-    { value: "one", label: "One" },
-    { value: "two", label: "Two" },
-    { value: "three", label: "Three" },
-  ];
+export default function Filter({ type }) {
+  const options = getOptions(type);
 
   const customStyles = {
     placeholder: (provided) => ({
@@ -16,6 +13,7 @@ export default function Filter() {
     option: (provided, state) => ({
       ...provided,
       fontSize: "14px",
+      whiteSpace: "noWrap",
     }),
   };
 
@@ -37,8 +35,8 @@ export default function Filter() {
       <Select
         isClearable="true"
         isSearchable="true"
-        name="Role"
-        placeholder="Role"
+        name={type}
+        placeholder={type}
         isMulti
         options={options}
         onChange={handleChange}

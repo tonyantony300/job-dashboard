@@ -38,12 +38,11 @@ function App() {
   return (
     <div className="container">
       <div className="filter-section">
-        <Filter />
-        <span className="filter">Number of Employees</span>
-        <span className="filter">Experience</span>
-        <span className="filter">Remote</span>
-        <span className="filter">Minimum Base Pay Salary</span>
-        <span className="filter">Search Company Name</span>
+        <Filter type={"Role"} />
+        <Filter type={"Number of Employees"} />
+        <Filter type={"Experience"} />
+        <Filter type={"Remote"} />
+        <Filter type={"Minimum Base Pay Salary"} />
       </div>
       <InfiniteScroll
         dataLength={items.length}
@@ -51,7 +50,7 @@ function App() {
         hasMore={true}
         className="cards-section"
       >
-        {items.map((item, index) => (
+        {items.map((item) => (
           <Card
             key={item.jdUid}
             company={item.companyName || "NA"}

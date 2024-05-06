@@ -37,7 +37,8 @@ const ItemCards = ({ items }) =>
   ));
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [unfilteredItems, setUnfilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState([]);
   const [filters, setFilters] = useState({});
 
   const fetchData = (offset) => {
@@ -51,7 +52,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         if (data.jdList && data.jdList.length > 0) {
-          setItems((prevItems) => [...prevItems, ...data.jdList]);
+          setUnfilteredItems((prevItems) => [...prevItems, ...data.jdList]);
         }
       })
       .catch((error) => {
@@ -67,23 +68,35 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("current filter status =>", filters);
-  }, [filters]);
+    console.log("unfiltered items =>", unfilteredItems);
+    let anyFilterPresent = Object.values(filters).some((i) => i !== null);
+    if (!anyFilterPresent) {
+      setFilteredItems(unfilteredItems);
+    } else {
+      setFilteredItems(
+        unfilteredItems.filter((item) => item.jobRole === filters.Role)
+      );
+    }
+  }, [filters, unfilteredItems]);
+
+  useEffect(() => {
+    console.log("filtered items  =>", filteredItems);
+  }, [filteredItems]);
 
   const fetchMoreData = () => {
-    const currentOffset = items.length;
+    const currentOffset = unfilteredItems.length;
     fetchData(currentOffset);
   };
   return (
     <div className="container">
       <Filters onSelection={handleSelection} />
       <InfiniteScroll
-        dataLength={items.length}
+        dataLength={filteredItems.length}
         next={fetchMoreData}
         hasMore={true}
         className="cards-section"
       >
-        <ItemCards items={items} />
+        <ItemCards items={filteredItems} />
       </InfiniteScroll>
     </div>
   );

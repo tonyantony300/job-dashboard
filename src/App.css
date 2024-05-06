@@ -24,7 +24,7 @@
 .container {
   background-color: #fff;
   padding: 2rem;
-  height: 100vh;
+  height: auto;
   max-width: 1400px;
 }
 
@@ -33,7 +33,7 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .filter {
@@ -42,4 +42,17 @@
   border-radius: 5px;
   font-size: small;
   color: var(--text-lightgray)
+}
+
+.cards-section {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  flex-wrap: wrap;
+  gap: 1rem;
+  overflow-y: scroll;
 }

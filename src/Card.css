@@ -4,13 +4,15 @@ h6, p {
 }
 
 .card {
-    max-width: 20rem;
-    height: 34rem;
+    max-width: 15rem;
+    height: 28rem;
     border-radius: 1.3rem;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 24px 24px 8px 24px;
+    padding: 24px;
     font-size: 14px;
     font-weight: 400;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -21,8 +23,9 @@ h6, p {
 .posted-header {
     box-shadow: rgba(149, 157, 165, 0.6) 1px 1px 6px;
     border-radius: 10px;
-    padding: 2px 5px 2px 5px;
+    padding: 2px 5px 5px 5px;
     font-size: 9px;
+    width: 100px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -48,14 +51,32 @@ h6, p {
     align-items: flex-start;
     padding-left: 10px;
 }
+
+.card-company {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: var(--text-lightgray);
+}
+
+.card-role {
+    margin: 4px 0px;
+}
+
+.card-location {
+    font-size: small;
+    font-weight: 600;
+}
+
 .experience-section {
 
     margin: 8px 0px;
-   
+   margin-top: auto;
 }
 
 .salary-section {
     margin: 5px 0px;
+    color: var(--text-darkgray);
+    font-weight: 600;
 }
 
 .button-section {
@@ -74,25 +95,54 @@ h6, p {
     padding: 5px 0px;
 }
 
-.card-body h6 {
-    margin-top: 6px;
-}
+
 .card-body {
     position: relative;
-    max-height: 250px; 
-    overflow: hidden;
-  }
+    max-height: 200px; 
+    overflow-y: scroll;
+    line-height: 18px;
+}
   
-  .card-body::after {
+.card-body::after {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 150px; 
+    height: 200px; 
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
     z-index: 0;
   }
+
+.show-more-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+}
+
+button.show-more {
+    z-index: 99;
+    border: 0;
+    background-color: transparent;
+    color: blue;
+    cursor: pointer;
+}
+
+
+
+.no-overlay::after {
+    background: none; 
+}
+ 
+.button-section button {
+    cursor: pointer;
+}
+
+.button-section button:active {
+    transform: scale(0.99);
+}
 
 .button-section button:first-of-type {
     background-color: var(--primary-button);
@@ -103,12 +153,3 @@ h6, p {
     background-color: var( --secondary-button);
     color: white;
 }
-
-button.show-more {
-    z-index: 99;
-}
-
-.no-overlay::after {
-    background: none; 
- }
- 

@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import "./Card.css";
 
-export default function Card() {
+export default function Card({
+  age = "⏳ Posted 2 days ago",
+  company = "Unknown Company",
+  logoUrl = "https://placeholder.com/logo",
+  role = "Not specified",
+  location = "Location unknown",
+  minSalary = "Not specified",
+  maxSalary = "Not specified",
+  details = "No details available",
+  exp = "Experience not specified",
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const details =
-    "This is a sample job and you must have displayed it to understand that its not just some random lorem ipsum text but something which was manually written. Oh well, if random text is what you were looking for then here it is: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages and now in this assignment.";
-  const shortDetails =
-    details.length > 300 ? details.substring(0, 300) + "..." : details;
-  const exp = "3";
-  const location = "Bengaluru";
-  const company = "Dropbox";
-  const maxSalary = "20";
-  const minSalary = "30";
-  const role = "Frontend Developer";
-  const logoUrl = "https://logo.clearbit.com/dropbox.com";
-  const age = "⏳ Posted 2 days ago";
-  const jdLink = "https://weekday.works";
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+  const shortDetails =
+    details.length > 300 ? details.substring(0, 300) + "..." : details;
 
   return (
     <div className="card">

@@ -1,7 +1,40 @@
+import React, { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 import "./App.css";
 import Card from "./Card";
 
 function App() {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    fetchData(0);
+  }, []);
+
+  const fetchData = (offset) => {
+    fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ limit: 10, offset: offset }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data received =>", data);
+        if (data.jdList && data.jdList.length > 0) {
+          setItems((prevItems) => [...prevItems, ...data.jdList]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  const fetchMoreData = () => {
+    const currentOffset = items.length;
+    fetchData(currentOffset);
+  };
   return (
     <div className="container">
       <div className="filter-section">
@@ -12,19 +45,28 @@ function App() {
         <span className="filter">Minimum Base Pay Salary</span>
         <span className="filter">Search Company Name</span>
       </div>
-      <div className="cards-section">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
+      <InfiniteScroll
+        dataLength={items.length}
+        next={fetchMoreData}
+        hasMore={true}
+        className="cards-section"
+      >
+        {items.map((item, index) => (
+          <Card
+            key={item.jdUid}
+            company={item.companyName}
+            logoUrl={item.logoUrl}
+            role={item.jobRole}
+            location={item.location}
+            minSalary={item.minJdSalary}
+            maxSalary={item.maxJdSalary}
+            salaryCurrencyCode={item.salaryCurrencyCode}
+            details={item.jobDetailsFromCompany}
+            exp={item.minExp}
+            jdLink={item.jdLink}
+          />
+        ))}
+      </InfiniteScroll>
     </div>
   );
 }

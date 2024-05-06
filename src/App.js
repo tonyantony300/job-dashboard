@@ -5,12 +5,40 @@ import "./App.css";
 import Card from "./Card";
 import Filter from "./Filter";
 
+const filterTypes = [
+  "Role",
+  "Number of Employees",
+  "Experience",
+  "Remote",
+  "Minimum Base Pay Salary",
+];
+
+const Filters = ({ onSelection }) => (
+  <div className="filter-section">
+    {filterTypes.map((type) => (
+      <Filter key={type} type={type} onSelection={onSelection} />
+    ))}
+  </div>
+);
+
+const ItemCards = ({ items }) =>
+  items.map((item, index) => (
+    <Card
+      key={`${item.jdUid}-${index}`}
+      company={item.companyName}
+      logoUrl={item.logoUrl}
+      role={item.jobRole}
+      location={item.location}
+      minSalary={item.minJdSalary}
+      maxSalary={item.maxJdSalary}
+      details={item.jobDetailsFromCompany}
+      exp={item.minExp}
+    />
+  ));
+
 function App() {
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    fetchData(0);
-  }, []);
+  const [filters, setFilters] = useState({});
 
   const fetchData = (offset) => {
     fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", {
@@ -31,38 +59,31 @@ function App() {
       });
   };
 
+  const handleSelection = (option) => {
+    setFilters((prevFilters) => ({ ...prevFilters, ...option }));
+  };
+  useEffect(() => {
+    fetchData(0);
+  }, []);
+
+  useEffect(() => {
+    console.log("current filter status =>", filters);
+  }, [filters]);
+
   const fetchMoreData = () => {
     const currentOffset = items.length;
     fetchData(currentOffset);
   };
   return (
     <div className="container">
-      <div className="filter-section">
-        <Filter type={"Role"} />
-        <Filter type={"Number of Employees"} />
-        <Filter type={"Experience"} />
-        <Filter type={"Remote"} />
-        <Filter type={"Minimum Base Pay Salary"} />
-      </div>
+      <Filters onSelection={handleSelection} />
       <InfiniteScroll
         dataLength={items.length}
         next={fetchMoreData}
         hasMore={true}
         className="cards-section"
       >
-        {items.map((item) => (
-          <Card
-            key={item.jdUid}
-            company={item.companyName || "NA"}
-            logoUrl={item.logoUrl || "https://placeholder.com/logo"}
-            role={item.jobRole || "NA"}
-            location={item.location || "NA"}
-            minSalary={item.minJdSalary || "NA"}
-            maxSalary={item.maxJdSalary || "NA"}
-            details={item.jobDetailsFromCompany || "No details available"}
-            exp={item.minExp || "NA"}
-          />
-        ))}
+        <ItemCards items={items} />
       </InfiniteScroll>
     </div>
   );

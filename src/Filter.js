@@ -2,7 +2,7 @@ import React from "react";
 import Select from "react-select";
 import getOptions from "./helper";
 
-export default function Filter({ type }) {
+export default function Filter({ type, onSelection }) {
   const options = getOptions(type);
 
   const customStyles = {
@@ -18,16 +18,7 @@ export default function Filter({ type }) {
   };
 
   const handleChange = (selectedOption) => {
-    // output   [
-    //     {
-    //         "value": "two",
-    //         "label": "Two"
-    //     },
-    //     {
-    //         "value": "three",
-    //         "label": "Three"
-    //     }
-    // ]
+    onSelection({ [type]: selectedOption?.value || null });
   };
 
   return (
@@ -37,7 +28,6 @@ export default function Filter({ type }) {
         isSearchable="true"
         name={type}
         placeholder={type}
-        isMulti
         options={options}
         onChange={handleChange}
         styles={customStyles}

@@ -6,6 +6,10 @@ export default function Filter({ type, onSelection }) {
   const options = getOptions(type);
 
   const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      fontSize: "14px",
+    }),
     placeholder: (provided) => ({
       ...provided,
       fontSize: "14px",

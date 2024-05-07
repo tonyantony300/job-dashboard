@@ -32,7 +32,7 @@ const ItemCards = ({ items }) =>
       minSalary={item.minJdSalary}
       maxSalary={item.maxJdSalary}
       details={item.jobDetailsFromCompany}
-      exp={item.minExp}
+      exp={item.minExp || "NA"}
     />
   ));
 
@@ -76,7 +76,7 @@ function App() {
       if (filters.Role && item.jobRole !== filters.Role) {
         return false;
       }
-      if (filters.Experience && item.minExp > filters.Experience) {
+      if (filters.Experience && (item.minExp ?? 0) > filters.Experience) {
         return false;
       }
       if (filters.Remote) {

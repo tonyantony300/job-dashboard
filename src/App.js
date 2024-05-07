@@ -66,22 +66,37 @@ function App() {
   useEffect(() => {
     fetchData(0);
   }, []);
-
   useEffect(() => {
-    console.log("unfiltered items =>", unfilteredItems);
-    let anyFilterPresent = Object.values(filters).some((i) => i !== null);
+    const anyFilterPresent = Object.values(filters).some((i) => i !== null);
     if (!anyFilterPresent) {
       setFilteredItems(unfilteredItems);
-    } else {
-      setFilteredItems(
-        unfilteredItems.filter((item) => item.jobRole === filters.Role)
-      );
+      return;
     }
-  }, [filters, unfilteredItems]);
+    const filtered = unfilteredItems.filter((item) => {
+      if (filters.Role && item.jobRole !== filters.Role) {
+        return false;
+      }
+      if (filters.Experience && item.minExp > filters.Experience) {
+        return false;
+      }
+      if (filters.Remote) {
+        if (filters.Remote === "remote" && item.location !== "remote") {
+          return false;
+        } else if (filters.Remote !== "remote" && item.location === "remote") {
+          return false;
+        }
+      }
+      if (
+        filters["Minimum Base Pay Salary"] &&
+        item.minJdSalary < filters["Minimum Base Pay Salary"]
+      ) {
+        return false;
+      }
+      return true;
+    });
 
-  useEffect(() => {
-    console.log("filtered items  =>", filteredItems);
-  }, [filteredItems]);
+    setFilteredItems(filtered);
+  }, [filters, unfilteredItems]);
 
   const fetchMoreData = () => {
     const currentOffset = unfilteredItems.length;
